@@ -1,5 +1,5 @@
 # mq-client
-一个用来演示消息队列MQ的简单示例项目，包括基于JMS的ActiveMQ和基于AMQP的RabbitMQ   
+一个简单的基于Java的消息队列MQ客户端，封装了基于JMS的ActiveMQ和基于AMQP的RabbitMQ 
 
 **技术栈**  
 - Spring JmsTemplate
