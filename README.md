@@ -1,4 +1,4 @@
-# bounter-mq
+# mq-client
 一个用来演示消息队列MQ的简单示例项目，包括基于JMS的ActiveMQ和基于AMQP的RabbitMQ   
 
 **技术栈**  
