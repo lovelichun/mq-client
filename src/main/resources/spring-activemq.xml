@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 配置JMS连接工厂 -->
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616" />
+	</bean>
+
+	<!-- 定义Queue类型的消息目的地 -->
+    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <!-- 设置Queue的名字 -->
+        <constructor-arg>
+            <value>bounter.queue</value>
+        </constructor-arg>
+    </bean>
+
+	<!-- 定义Topic类型的消息目的地 -->
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- 设置Topic的名字 -->
+        <constructor-arg>
+            <value>bounter.topic</value>
+        </constructor-arg>
+    </bean>
+
+	<!-- 定义JmsTemplate，用来简化消息发送 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="queueDestination" />
+        <property name="receiveTimeout" value="10000" />
+    </bean>
+    
+	<!-- 定义接收消息的监听器容器 -->
+	<bean id="messageListenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<!-- 配置消息监听的目的地，可以是上面定义的Queue或Topic -->
+		<!-- <property name="destination" ref="queueDestination" /> -->
+		<property name="destination" ref="topicDestination" /> 
+		<!-- 配置自定义的消息监听器类 -->
+		<!-- <property name="messageListener" ref="jmsQueueListener" /> -->
+		<property name="messageListener" ref="jmsTopicListener" />
+	</bean>
+</beans>
