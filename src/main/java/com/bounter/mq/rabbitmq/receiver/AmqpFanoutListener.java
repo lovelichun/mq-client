@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AmqpFanoutListener {
 
-    public void onFanout(String msg) {
+    public void onFanoutMessage(String msg) {
         System.out.println("Receive msg (fanout) :" + msg);
     }
 }

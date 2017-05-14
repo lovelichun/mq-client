@@ -21,20 +21,8 @@ public class JmsTopicSender {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
-	@Autowired
-	private Topic topic;
-	
-	/**
-	 * 向指定的topic发送消息
-	 * @param topic
-	 * @param msg
-	 */
-	public void publish(String msg) {
-		jmsTemplate.send(topic, new MessageCreator() {
-            public Message createMessage(Session session) throws JMSException {
-            	System.out.println("Sending msg to topic: " + topic.getTopicName());
-                return session.createTextMessage(msg);
-            }
-        });
+	public void sendTopic(String msg) {
+		System.out.println("Sending msg (topic): " + msg);
+		jmsTemplate.convertAndSend(msg);
     }
 }

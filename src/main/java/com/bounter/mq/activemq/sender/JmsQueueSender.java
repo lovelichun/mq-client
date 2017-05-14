@@ -21,24 +21,9 @@ public class JmsQueueSender {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
-	@Autowired
-	private Queue queue;
-	
-	public void sendText(String msg) {
-        jmsTemplate.send(queue, new MessageCreator() {
-            public Message createMessage(Session session) throws JMSException {
-            	System.out.println("Sending text to queue: " + queue.getQueueName());
-                return session.createTextMessage(msg);
-            }
-        });
+	public void sendQueue(String msg) {
+        System.out.println("Sending msg (queue): " + msg);
+        jmsTemplate.convertAndSend(msg);
     }
-	
-	public void sendTextToDefaultDest(String msg) {
-        jmsTemplate.send(new MessageCreator() {
-            public Message createMessage(Session session) throws JMSException {
-            	System.out.println("Sending text to defalut destination");
-                return session.createTextMessage(msg);
-            }
-        });
-    }
+
 }

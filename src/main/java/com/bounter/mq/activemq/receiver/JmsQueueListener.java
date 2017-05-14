@@ -9,21 +9,14 @@ import org.springframework.stereotype.Component;
 
 /**
  * Queue类型的消息监听器
- * @author sheng.zhao
  *
+ * @author sheng.zhao
  */
 @Component
-public class JmsQueueListener implements MessageListener {
+public class JmsQueueListener {
 
-	@Override
-	public void onMessage(Message message) {
-		if (message instanceof TextMessage) {
-			try {
-				System.out.println("Receive msg : " + ((TextMessage) message).getText());
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+    public void onQueueMessage(String message) {
+        System.out.println("Receive msg (queue) : " + message);
+    }
 
 }

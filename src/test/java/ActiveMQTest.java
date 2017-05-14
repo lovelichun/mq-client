@@ -21,9 +21,8 @@ public class ActiveMQTest {
 
     @Test
     public void test() {
-//    	jmsQueueSender.sendText("hello pretty!");
-//    	jmsQueueSender.sendTextToDefaultDest("hello pretty!");
-    	JmsTopicSender.publish("hello pretty!");
+    	jmsQueueSender.sendQueue("hello pretty!");
+//    	JmsTopicSender.sendTopic("hello pretty!");
     }
 
 }

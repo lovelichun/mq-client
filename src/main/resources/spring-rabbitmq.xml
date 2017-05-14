@@ -42,8 +42,8 @@
 
     <!--定义接收消息的监听器容器-->
     <rabbit:listener-container connection-factory="connectionFactory">
-        <rabbit:listener ref="amqpFanoutListener" method="onFanout" queue-names="bounter.queue" />
-        <!--<rabbit:listener ref="amqpDirectListener" method="onDirect" queue-names="bounter.queue" />-->
+        <rabbit:listener ref="amqpFanoutListener" method="onFanoutMessage" queue-names="bounter.queue" />
+        <!--<rabbit:listener ref="amqpDirectListener" method="onDirectMessage" queue-names="bounter.queue" />-->
     </rabbit:listener-container>
 
 </beans>

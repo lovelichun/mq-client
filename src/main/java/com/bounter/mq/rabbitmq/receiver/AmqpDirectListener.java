@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AmqpDirectListener {
 
-    public void onDirect(String msg) {
+    public void onDirectMessage(String msg) {
         System.out.println("Receive msg (direct) :" + msg);
     }
 }
