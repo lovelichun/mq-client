@@ -7,7 +7,7 @@
                            http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
 
     <!-- 配置JMS连接工厂 -->
-    <amq:connectionFactory id="connectionFactory" brokerURL="tcp://localhost:61616"/>
+    <amq:connectionFactory id="connectionFactory" brokerURL="tcp://192.168.245.131:61616"/>
 
     <!-- 定义Queue类型的消息目的地 -->
     <amq:queue id="queueDestination" physicalName="bounter.queue" />
@@ -19,14 +19,14 @@
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="defaultDestinationName" value="bounter.queue"/>
-        <!--<property name="defaultDestinationName" value="bounter.topic"/>-->
+        <!-- <property name="defaultDestinationName" value="bounter.topic"/> -->
         <property name="receiveTimeout" value="10000"/>
     </bean>
 
     <!-- 定义接收消息的监听器容器 -->
     <jms:listener-container connection-factory="connectionFactory">
-        <jms:listener destination="bounter.queue" ref="jmsQueueListener" method="onQueueMessage" />
         <jms:listener destination="bounter.topic" ref="jmsTopicListener" method="onTopicMessage" />
+        <jms:listener destination="bounter.queue" ref="jmsQueueListener" method="onQueueMessage" />
     </jms:listener-container>
 
 </beans>

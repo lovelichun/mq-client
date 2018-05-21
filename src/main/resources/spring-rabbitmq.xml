@@ -10,7 +10,7 @@
 
     <!--配置connection-factory，指定连接rabbit server参数 -->
     <rabbit:connection-factory id="connectionFactory"
-        host="127.0.0.1"
+        host="192.168.245.131"
         port="5672"
         username="guest"
         password="guest"/>
@@ -43,7 +43,7 @@
     <!--定义接收消息的监听器容器-->
     <rabbit:listener-container connection-factory="connectionFactory">
         <rabbit:listener ref="amqpFanoutListener" method="onFanoutMessage" queue-names="bounter.queue" />
-        <!--<rabbit:listener ref="amqpDirectListener" method="onDirectMessage" queue-names="bounter.queue" />-->
+        <!-- <rabbit:listener ref="amqpDirectListener" method="onDirectMessage" queue-names="bounter.queue" /> -->
     </rabbit:listener-container>
 
 </beans>

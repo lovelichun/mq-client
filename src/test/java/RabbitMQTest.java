@@ -18,8 +18,8 @@ public class RabbitMQTest {
 
     @Test
     public void test() {
-//        amqpDirectSender.sendDirect("hello pretty!");
-        amqpFanoutSender.sendFanout("hello,pretty!");
+        amqpDirectSender.sendDirect("hello pretty!");
+//        amqpFanoutSender.sendFanout("hello,pretty!");
     }
 
 }
